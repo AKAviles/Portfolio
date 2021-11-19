@@ -1,0 +1,63 @@
+@import "fonts.css";
+
+a {
+  text-decoration: none;
+  padding: 10px 10px;
+  margin: 10px;
+  font-size: 20px;
+  color: #5f605d;
+  transition: font-size 0.5s;
+}
+
+a:hover {
+  font-size: 22px;
+}
+
+.nav-container {
+  background-color: #21201f;
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 8%;
+  box-shadow: 3px 0 3px #727271;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-icon {
+  background-color: #ef6817;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  width: 75px;
+  height: 75px;
+  justify-content: center;
+  align-items: baseline;
+  box-shadow: 0px 0px 7px #727271;
+}
+
+.nav-icon-text {
+  color: #21201f;
+  font-family: Glacial, Sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+  padding: 2px;
+  padding-left: 8px;
+  margin: 0px;
+  text-shadow: 0px 0px 2px #727271;
+}
+
+hr {
+  background-color: #ef6817;
+  display: block;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  border-style: inset;
+  border-width: 1px;
+}

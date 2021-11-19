@@ -1,0 +1,32 @@
+.showcase-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #727271;
+  height: 100vh;
+  flex-wrap: wrap;
+  flex: 1 1 25%;
+  align-items: baseline;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.header-styling {
+  color: #a0a0a0;
+  font-size: 25px;
+  align-self: center;
+  padding: 0;
+  padding-top: 25px;
+  margin: 0;
+  letter-spacing: 0.1em;
+}
+
+.repo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: baseline;
+}
+
+.title-styling {
+  font-size: 12px;
+}

@@ -1,0 +1,52 @@
+@import "./fonts.css";
+
+.hidden {
+  display: none;
+  order: 3;
+}
+
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #5f605d;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: baseline;
+  flex: 1 1 90%;
+  height: 100vh;
+  padding-left: 10px;
+  box-shadow: 2px 0px 2px #5f605d;
+}
+
+.intro-background-image {
+  background-image: url("../images/peakpx.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.intro-small {
+  font-family: Glacial, sans-serif;
+  font-style: italic;
+  color: #e0dede;
+  font-size: 30px;
+  padding-top: 25px;
+  margin: 0;
+  letter-spacing: 0em;
+}
+
+.intro-name {
+  font-family: Glacial, sans-serif;
+  font-style: bold;
+  color: #e0dede;
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+  text-shadow: 1px 0 0px #868585;
+  border: black;
+  letter-spacing: 4px;
+}
+
+.skills-styling {
+  color: #e0dede;
+  letter-spacing: 1px;
+}

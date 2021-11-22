@@ -8,6 +8,12 @@
   height: 100vh;
 }
 
+body {
+  background-image: url("../images/peakpx.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .left-flex {
   display: flex;
   justify-content: space-evenly;

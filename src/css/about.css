@@ -11,15 +11,35 @@
   height: 100vh;
   flex-wrap: wrap;
   flex: 1 1 25%;
-  box-shadow: 0px 0px 5px #727271;
+  box-shadow: 0px 0px 5px #21201f;
   align-items: baseline;
   padding-left: 10px;
   padding-right: 10px;
+  transform: translateX(0);
+  animation: slide-in 0.5s ease-in-out;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  25% {
+    transform: translateX(75%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  75% {
+    transform: translateX(25%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 .header-styling {
   color: #a0a0a0;
-  font-size: 25px;
+  font-size: 35px;
   align-self: center;
   padding: 0;
   padding-top: 25px;
@@ -27,7 +47,7 @@
   letter-spacing: 0.1em;
 }
 
-.text-styling-about {
-  font-size: 12px;
+p {
+  font-size: 16px;
   color: #a0a0a0;
 }

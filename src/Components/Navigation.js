@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/navigation.css";
 
-export default function Navigation() {
+export default function Navigation({ activeDiv, handleDivChange }) {
   return (
     <div className='nav-container'>
       <div className='nav-icon'>
@@ -10,13 +10,21 @@ export default function Navigation() {
       </div>
 
       <nav className='nav-list'>
-        <a href='#intro'>Intro</a>
+        <a value='intro' onClick={handleDivChange} href='#intro'>
+          Intro
+        </a>
         <hr />
-        <a href='#about'>About</a>
+        <a name='about' onClick={handleDivChange} href='#about'>
+          About
+        </a>
         <hr />
-        <a href='#showcase'>Showcase</a>
+        <a name='showcase' onClick={handleDivChange} href='#showcase'>
+          Showcase
+        </a>
         <hr />
-        <a href='#contact'>Contact</a>
+        <a name='contact' onClick={handleDivChange} href='#contact'>
+          Contact
+        </a>
         <hr />
       </nav>
     </div>

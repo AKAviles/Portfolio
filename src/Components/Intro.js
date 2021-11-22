@@ -8,9 +8,15 @@ export default function Intro() {
         <p className='intro-small'>Hello, I'm</p>
         <p className='intro-name'>Anthony Aviles</p>
       </div>
-      <div className='skills-styling'>
-        <p> Full Stack Developer | Front End Developer | Back End Developer</p>
-        <p> Javascript | React.js | Node.js | PostgreSQL</p>
+      <div>
+        <p className='skills-styling'>
+          {" "}
+          Full Stack Developer | Front End Developer | Back End Developer
+        </p>
+        <p className='skills-styling'>
+          {" "}
+          Javascript | React.js | Node.js | PostgreSQL
+        </p>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/showcase.css";
 
-export default function Showcase() {
+export default function Showcase({ activeDiv }) {
   const [pinnedRepos, setPinnedRepos] = useState([]);
 
   // const [apiData, setApiData] = useState([]);
@@ -19,7 +19,7 @@ export default function Showcase() {
     getRepos();
   }, []);
 
-  console.log(pinnedRepos);
+  // console.log(pinnedRepos);
 
   // //pinned repo api https://gh-pinned-repos.egoist.sh/?username=AKAviles
   // async function loadRepos(username) {
@@ -112,12 +112,18 @@ export default function Showcase() {
   // console.log(apiData);
 
   return (
-    <div className='hidden'>
+    <div
+      className={`${
+        activeDiv.active === "showcase" ? "showcase-container" : "hidden"
+      }`}
+    >
       <h2 className='header-styling'>Showcase</h2>
       <hr></hr>
       <div className='repo-container'>
         {pinnedRepos.map((repo) => (
-          <p className='title-styling'>{repo.repo}</p>
+          <p key={Math.random()} className='title-styling'>
+            {repo.repo}
+          </p>
         ))}
       </div>
     </div>

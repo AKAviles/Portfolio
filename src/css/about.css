@@ -16,7 +16,7 @@
   padding-left: 10px;
   padding-right: 10px;
   transform: translateX(0);
-  animation: slide-in 0.5s ease-in-out;
+  animation: slide-in 0.5s ease-in;
 }
 
 @keyframes slide-in {

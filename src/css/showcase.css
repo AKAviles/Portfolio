@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 .showcase-container {
   display: flex;
   flex-direction: column;
@@ -50,4 +54,16 @@
 
 .title-styling {
   font-size: 12px;
+}
+
+/* Card Styling */
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.images {
+  width: 75%;
 }

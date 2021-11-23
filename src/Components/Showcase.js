@@ -1,115 +1,65 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import "../css/showcase.css";
 
 export default function Showcase({ activeDiv }) {
   const [pinnedRepos, setPinnedRepos] = useState([]);
+  const [skills, setSkills] = useState("");
+  const [readMe, setReadMe] = useState("");
+  const [imageURL, setImageURL] = useState("");
 
   // const [apiData, setApiData] = useState([]);
   // //Get Pinned repos || [{owner, repo, link}]
-  useEffect(() => {
-    function getRepos() {
-      axios({
-        method: "get",
-        url: "https://gh-pinned-repos.egoist.sh/?username=AKAviles",
-      }).then((res) => {
-        setPinnedRepos(res.data);
-      });
+  // Pinned: https://gh-pinned-repos.egoist.sh/?username=AKAviles
+  // ReadMe:  https://raw.githubusercontent.com/AKAviles/${pinnedRepos.repo}/main/README.md
+  // Images: https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/screenshots/preview.PNG
+  // Skills: https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/skills.md
+
+  const fetch = useCallback(() => {
+    const repoURL = "https://gh-pinned-repos.egoist.sh/?username=AKAviles";
+    try {
+      axios
+        .get(repoURL)
+        .then((response) => {
+          setPinnedRepos(response.data);
+        })
+        .then(
+          pinnedRepos.map((repo) =>
+            axios
+              .get(
+                `https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/skills.md`
+              )
+              .then(console.log(repo.repo))
+              .then((response) => {
+                setSkills([...skills, response.data]);
+              })
+              .then(
+                axios
+                  .get(
+                    `https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/README.md`
+                  )
+                  .then((response) => {
+                    setReadMe(response.data);
+                  })
+              )
+              .then(
+                setImageURL([
+                  ...imageURL,
+                  `https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/screenshots/preview.PNG`,
+                ])
+              )
+          )
+        );
+    } catch (err) {
+      console.log(err);
     }
-    getRepos();
+  }, [pinnedRepos, skills]);
+
+  useEffect(() => {
+    fetch();
   }, []);
 
-  // console.log(pinnedRepos);
-
-  // //pinned repo api https://gh-pinned-repos.egoist.sh/?username=AKAviles
-  // async function loadRepos(username) {
-  //   try {
-  //     const response = await fetch(
-  //       `https://gh-pinned-repos.egoist.sh/?username=${username}`
-  //     );
-  //     const repoFromAPI = await response.json();
-  //     setPinnedRepos(repoFromAPI);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
-  // // get readme data from repo with https://raw.githubusercontent.com/${slicedProjectURL}/main/README.md api
-  // async function getReadMe(projectURL) {
-  //   const slicedProjectURL = projectURL.slice(19);
-  //   const readMeURL = `https://raw.githubusercontent.com/${slicedProjectURL}/main/README.md`;
-  //   try {
-  //     const response = await fetch(readMeURL);
-  //     return await response.text();
-  //   } catch (err) {
-  //     console.log(err);
-  //     return "";
-  //   }
-  // }
-
-  // function getPreviewLink(readme) {
-  //   const clauses = ["Preview", "Demo", "App", "Application", "Site", "API"];
-  //   let match = "";
-  //   clauses.forEach((clause) => {
-  //     if (!match) {
-  //       const testCase = new RegExp(`\\[Live ${clause}]\\((.*)\\)`);
-  //       const matchAttempt = readme.match(testCase);
-  //       if (matchAttempt) match = matchAttempt[1];
-  //     }
-  //   });
-  //   return match;
-  // }
-
-  // // get skills from https://raw.githubusercontent.com/${slicedProjectURL}/main/skills.md
-
-  // async function getSkills(projectURL) {
-  //   const slicedProjectURL = projectURL.slice(19);
-  //   const skillsURL = `https://raw.githubusercontent.com/${slicedProjectURL}/main/skills.md`;
-  //   try {
-  //     const response = await fetch(skillsURL);
-  //     if (response.ok) {
-  //       const skillsData = await response.text();
-  //       return skillsData.split("\n");
-  //     } else throw new Error("skills.md was not found.");
-  //   } catch (err) {
-  //     console.log(err);
-  //     return ["HTML", "CSS", "Javascript"];
-  //   }
-  // }
-
-  // // // get image from https://raw.githubusercontent.com/${slicedProjectURL}/main/screenshots/preview.PNG
-
-  // function getImage(projectURL) {
-  //   const slicedProjectURL = projectURL.slice(19);
-  //   const screenshotURL = `https://raw.githubusercontent.com/${slicedProjectURL}/main/screenshots/preview.PNG`;
-  // }
-
-  // Look into mapping or applying the following to actual divs or something returnable
-  // useEffect(() => {
-  //   async function testing(username) {
-  //     await loadRepos(username);
-  //     console.log(pinnedRepos);
-  //     for (let repo of pinnedRepos) {
-  //       let githubLink = repo.link;
-  //       await getSkills(githubLink);
-  //       console.log(promiseData.skills);
-  //       let readMe = await getReadMe(githubLink);
-  //       setPromiseData({
-  //         ...promiseData,
-  //         githubLink: githubLink,
-  //         description: repo.description,
-  //         title: repo.title,
-  //       });
-  //       getImage(githubLink);
-  //       getPreviewLink(readMe);
-  //       setApiData([...apiData, promiseData]);
-  //       setPromiseData({ ...initialPromiseData });
-  //     }
-  //   }
-  //   testing("AKAviles");
-  // }, []);
-
-  // console.log(apiData);
+  console.log(skills, imageURL);
 
   return (
     <div
@@ -121,9 +71,10 @@ export default function Showcase({ activeDiv }) {
       <hr></hr>
       <div className='repo-container'>
         {pinnedRepos.map((repo) => (
-          <p key={Math.random()} className='title-styling'>
-            {repo.repo}
-          </p>
+          <div key={Math.random()} className='card-container'>
+            <img src='null' alt='' className={null} />
+            <h3 className='title-styling'>{repo.repo}</h3>
+          </div>
         ))}
       </div>
     </div>

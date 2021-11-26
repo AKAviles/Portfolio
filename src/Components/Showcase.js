@@ -1,66 +1,15 @@
-import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
+import React from "react";
 import "../css/showcase.css";
+import LiveLinks from "./LiveLinks";
 
-export default function Showcase({ activeDiv }) {
-  const [pinnedRepos, setPinnedRepos] = useState([]);
-  const [skills, setSkills] = useState("");
-  const [readMe, setReadMe] = useState("");
-  const [imageURL, setImageURL] = useState("");
-
-  // const [apiData, setApiData] = useState([]);
-  // //Get Pinned repos || [{owner, repo, link}]
-  // Pinned: https://gh-pinned-repos.egoist.sh/?username=AKAviles
-  // ReadMe:  https://raw.githubusercontent.com/AKAviles/${pinnedRepos.repo}/main/README.md
-  // Images: https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/screenshots/preview.PNG
-  // Skills: https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/skills.md
-
-  const fetch = useCallback(() => {
-    const repoURL = "https://gh-pinned-repos.egoist.sh/?username=AKAviles";
-    try {
-      axios
-        .get(repoURL)
-        .then((response) => {
-          setPinnedRepos(response.data);
-        })
-        .then(
-          pinnedRepos.map((repo) =>
-            axios
-              .get(
-                `https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/skills.md`
-              )
-              .then(console.log(repo.repo))
-              .then((response) => {
-                setSkills([...skills, response.data]);
-              })
-              .then(
-                axios
-                  .get(
-                    `https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/README.md`
-                  )
-                  .then((response) => {
-                    setReadMe(response.data);
-                  })
-              )
-              .then(
-                setImageURL([
-                  ...imageURL,
-                  `https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/screenshots/preview.PNG`,
-                ])
-              )
-          )
-        );
-    } catch (err) {
-      console.log(err);
-    }
-  }, [pinnedRepos, skills]);
-
-  useEffect(() => {
-    fetch();
-  }, []);
-
-  console.log(skills, imageURL);
-
+export default function Showcase({
+  activeDiv,
+  pinnedRepos,
+  skills,
+  readMe,
+  imageURL,
+  received,
+}) {
   return (
     <div
       className={`${
@@ -70,10 +19,35 @@ export default function Showcase({ activeDiv }) {
       <h2 className='header-styling'>Showcase</h2>
       <hr></hr>
       <div className='repo-container'>
-        {pinnedRepos.map((repo) => (
-          <div key={Math.random()} className='card-container'>
-            <img src='null' alt='' className={null} />
+        {pinnedRepos.map((repo, i) => (
+          <div key={i} className='card-container'>
+            <img src={imageURL[i]} alt={repo.repo} className='images' />
             <h3 className='title-styling'>{repo.repo}</h3>
+
+            <div>
+              <ul>
+                {setTimeout(() => {
+                  skills[i].map((skill, j) => {
+                    if (j < skills[i].length - 1) {
+                      return <li>{skill}</li>;
+                    } else {
+                      return null;
+                    }
+                  });
+                }, 3000)}
+
+                {/* <li>React</li>
+                  <li>Responsive design via CSS and responsive-react</li>
+                  <li>Custom, cohesive visual design language</li>
+                  <li>Complex interactivity via state management and hooks</li>
+                  <li>SVG images</li> */}
+              </ul>
+            </div>
+
+            <nav className='links-cards'>
+              <LiveLinks readMe={readMe} i={i} />
+              <a href={repo.link}>GitHub</a>
+            </nav>
           </div>
         ))}
       </div>

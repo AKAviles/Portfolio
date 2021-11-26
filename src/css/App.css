@@ -12,6 +12,7 @@ body {
   background-image: url("../images/peakpx.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 .left-flex {
@@ -23,7 +24,7 @@ body {
 .right-flex {
   display: flex;
   justify-content: space-evenly;
-  flex: 1 1 30%;
+  flex: 1 1 45%;
 }
 
 .body-nav-container {

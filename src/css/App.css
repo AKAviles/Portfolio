@@ -70,6 +70,6 @@ hr {
   }
 
   body {
-    overflow-y: hidden;
+    overflow-y: scroll;
   }
 }

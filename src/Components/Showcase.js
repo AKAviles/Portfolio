@@ -24,24 +24,8 @@ export default function Showcase({
             <img src={imageURL[i]} alt={repo.repo} className='images' />
             <h3 className='title-styling'>{repo.repo}</h3>
 
-            <div>
-              <ul>
-                {setTimeout(() => {
-                  skills[i].map((skill, j) => {
-                    if (j < skills[i].length - 1) {
-                      return <li>{skill}</li>;
-                    } else {
-                      return null;
-                    }
-                  });
-                }, 3000)}
-
-                {/* <li>React</li>
-                  <li>Responsive design via CSS and responsive-react</li>
-                  <li>Custom, cohesive visual design language</li>
-                  <li>Complex interactivity via state management and hooks</li>
-                  <li>SVG images</li> */}
-              </ul>
+            <div className='desc-cards'>
+              <p className='desc'>{repo.description}</p>
             </div>
 
             <nav className='links-cards'>

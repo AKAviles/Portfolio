@@ -11,6 +11,7 @@ a {
 
 a:hover {
   font-size: 22px;
+  cursor: pointer;
 }
 
 .nav-container {
@@ -71,4 +72,35 @@ hr {
   overflow: hidden;
   border-style: inset;
   border-width: 1px;
+}
+
+.logos-div {
+  display: flex;
+}
+
+.linkedin-logo {
+  height: 32px;
+  width: 38px;
+}
+
+/* Responsiveness */
+
+@media only screen and (max-width: 900px) {
+  .nav-container {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  hr {
+    height: 60%;
+  }
+
+  .logos-div {
+    flex-direction: column;
+  }
 }

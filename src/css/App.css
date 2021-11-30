@@ -27,20 +27,6 @@ body {
   flex: 1 1 45%;
 }
 
-.body-nav-container {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  background-color: #21201f;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 2px 5px 10px rgb(0 0 0 / 0.2);
-  width: 35%;
-  height: 300px;
-  animation: 1s fadein 0.5s forwards;
-  opacity: 0;
-}
-
 @keyframes fadein {
   100% {
     opacity: 1;
@@ -64,4 +50,26 @@ hr {
   width: 250px;
   justify-content: left;
   align-items: left;
+}
+
+/* Responsiveness */
+
+@media only screen and (max-width: 900px) {
+  .main-flex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-flex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .right-flex {
+    flex-direction: column;
+  }
+
+  body {
+    overflow-y: hidden;
+  }
 }

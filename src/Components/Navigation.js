@@ -1,5 +1,7 @@
 import React from "react";
 import "../css/navigation.css";
+import gitHubLogo from "../images/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png";
+import linkedInLogo from "../images/LinkedIn-Logos/LI-In-Bug.png";
 
 export default function Navigation({ activeDiv, handleDivChange }) {
   return (
@@ -25,8 +27,15 @@ export default function Navigation({ activeDiv, handleDivChange }) {
         <a name='contact' onClick={handleDivChange} href='#contact'>
           Contact
         </a>
-        <hr />
       </nav>
+      <div className='logos-div'>
+        <a href='https://github.com/AKAviles'>
+          <img src={gitHubLogo} alt='github' />
+        </a>
+        <a href='https://www.linkedin.com/in/anthony-k-aviles'>
+          <img src={linkedInLogo} alt='github' className='linkedin-logo' />
+        </a>
+      </div>
     </div>
   );
 }

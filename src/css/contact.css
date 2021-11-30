@@ -134,3 +134,11 @@ input:focus {
   height: 30px;
   transition: height 0.2s ease-in;
 }
+
+/* Responsiveness */
+
+@media only screen and (max-width: 900px) {
+  .form-container {
+    height: 75%;
+  }
+}

@@ -58,6 +58,7 @@ hr {
   .main-flex {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .left-flex {

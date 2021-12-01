@@ -1,12 +1,10 @@
 import React from "react";
 import "../css/showcase.css";
-import LiveLinks from "./LiveLinks";
 
 export default function Showcase({
   activeDiv,
   pinnedRepos,
-  skills,
-  readMe,
+  liveLink,
   imageURL,
   received,
 }) {
@@ -29,7 +27,7 @@ export default function Showcase({
             </div>
 
             <nav className='links-cards'>
-              <LiveLinks readMe={readMe} i={i} />
+              <a href={liveLink[i]}>Live Demo</a>
               <a href={repo.link}>GitHub</a>
             </nav>
           </div>

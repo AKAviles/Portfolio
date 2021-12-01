@@ -14,8 +14,8 @@ function App() {
   const [activeDiv, setActiveDiv] = useState(initialDiv);
   const [pinnedRepos, setPinnedRepos] = useState([]);
   const [skills, setSkills] = useState([]);
-  const [readMe, setReadMe] = useState([]);
   const [imageURL, setImageURL] = useState([]);
+  const [liveLink, setLiveLink] = useState([]);
   const [received, setReceived] = useState(false);
 
   // const [apiData, setApiData] = useState([]);
@@ -49,11 +49,31 @@ function App() {
                     `https://raw.githubusercontent.com/AKAviles/${repo.repo}/main/README.md`
                   )
                   .then((response) => {
-                    const array = readMe;
-                    array.push(response.data);
-                    setReadMe(array);
+                    const array = liveLink;
+                    const previewLinks = response.data;
+                    const clauses = [
+                      "Preview",
+                      "Demo",
+                      "App",
+                      "Application",
+                      "Site",
+                      "API",
+                    ];
+                    let match = "";
+                    clauses.forEach((clause) => {
+                      if (!match) {
+                        const testCase = new RegExp(
+                          `\\[Live ${clause}]\\((.*)\\)`
+                        );
+                        const matchAttempt = previewLinks.match(testCase);
+                        if (matchAttempt) match = matchAttempt[1];
+                        array.push(match || "#");
+                        setLiveLink(array);
+                      }
+                    });
                   });
               })
+
               .then(() => {
                 const array = imageURL;
                 array.push(
@@ -98,7 +118,7 @@ function App() {
               activeDiv={activeDiv}
               pinnedRepos={pinnedRepos}
               skills={skills}
-              readMe={readMe}
+              liveLink={liveLink}
               imageURL={imageURL}
               received={received}
             />

@@ -105,7 +105,7 @@ hr {
   }
 }
 
-@media only screen and (max-width: 600px) and (max-height: 600px) {
+@media only screen and (max-width: 600px) and (max-height: 700px) {
   .nav-container {
     flex-direction: column;
     justify-content: flex-start;
@@ -119,5 +119,17 @@ hr {
   .logos-div {
     flex-direction: row;
     justify-content: center;
+  }
+
+  a {
+    padding: 5px 5px;
+    margin: 5px;
+    font-size: 16px;
+    color: #5f605d;
+    transition: font-size 0.5s;
+  }
+
+  .nav-format {
+    width: 10px;
   }
 }

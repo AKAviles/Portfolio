@@ -15,15 +15,15 @@ export default function Navigation({ activeDiv, handleDivChange }) {
         <a value='intro' onClick={handleDivChange} href='#intro'>
           Intro
         </a>
-        <hr />
+        <hr className='nav-format' />
         <a name='about' onClick={handleDivChange} href='#about'>
           About
         </a>
-        <hr />
+        <hr className='nav-format' />
         <a name='showcase' onClick={handleDivChange} href='#showcase'>
           Showcase
         </a>
-        <hr />
+        <hr className='nav-format' />
         <a name='contact' onClick={handleDivChange} href='#contact'>
           Contact
         </a>
